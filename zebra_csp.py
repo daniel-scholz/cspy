@@ -58,7 +58,7 @@ def all_different(keys)-> List[Constraint]:
         for j in keys:
             if j != k:
                 ret += [Constraint(lambda x,
-                                   k_bind=k, j_bind=j:  x[j_bind] != x[k_bind], [j, k])]
+                                    j_bind=j,k_bind=k:  x[j_bind] != x[k_bind], [j, k])]
     return ret
 
 
@@ -69,8 +69,8 @@ def main():
     print(
         f"The total computation took {(datetime.now()-start_total).microseconds} microsecs")
     try:
+        print(sorted(solution.items(), key=lambda kv: kv[1]))
         print("zebra:", solution["Zebra"])
         print("water:", solution["Water"])
-        print(sorted(solution.items(), key=lambda kv: kv[1]))
-    except:
+    except KeyError:
         print("No solution")
